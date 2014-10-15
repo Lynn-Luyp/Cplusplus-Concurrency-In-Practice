@@ -5,7 +5,7 @@ C++11 是 2011 年 9 月 1 号发布的。C++11 在 C++03 的基础上做了大�
 
 如果你对 C++11 不太熟悉，建议先看看维基百科上关于 C++11 新特性的介绍，中文C++11介绍，英文C++11介绍 ，另外C++之父 Bjarne Stroustrup 的关于 C++11 的 FAQ 也是必看的，我也收集了一些关于C++11的资料，供大家查阅，详见本章的 [资料汇](https://github.com/forhappy/A-Detailed-Cplusplus-Concurrency-Tutorial/blob/master/zh/chapter1-Introduction/web-resources.md)
 
-# 与 C++11 多线程相关的头文件 #
+# 与 C++11 多线程相关的头文件   #
 
 C++11 新标准中引入了五个头文件来支持多线程编程，它们分别是 `<atomic>, <thread>, <mutex>, <condition_variable>` 和 `<future>`。
 
@@ -24,40 +24,40 @@ C++11 新标准中引入了五个头文件来支持多线程编程，它们分�
 
     #include <stdio.h>
     #include <stdlib.h>
-
+    
     #include <iostream> // std::cout
     #include <thread>   // std::thread
-
+    
     void thread_task() {
         std::cout << "hello thread" << std::endl;
     }
-
+    
     int main(int argc, const char *argv[])
     {
         std::thread t(thread_task);
         t.join();
-
+    
         return EXIT_SUCCESS;
     }
 
 Makefile 如下：
 
     all:Thread
-
+    
     CC=g++
     CPPFLAGS=-Wall -std=c++11 -ggdb
     LDFLAGS=-pthread
-
+    
     Thread:Thread.o
         $(CC) $(LDFLAGS) -o $@ $^
-
+    
     Thread.o:Thread.cc
         $(CC) $(CPPFLAGS) -o $@ -c $^
 
 
     .PHONY:
         clean
-
+    
     clean:
         rm Thread.o Thread
 
